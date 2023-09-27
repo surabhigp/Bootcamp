@@ -1,0 +1,96 @@
+M0nkey10!
+
+sudo -i
+
+apt get install python3
+
+sudo apt update
+
+python3 --version
+
+sudo apt install software-properties-common
+
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+
+sudo apt install ansible
+
+mkdir ansiblelab (create directory)
+
+cd ansiblelab47 (change directory)
+
+vi myinventory
+
+ESC :wq! (exit from file)
+ansible all -i myinventory47 --list-hosts
+vi ansible.cfg (create configuration file)
+
+(insert: [defaults]
+inventory=myinventory47)
+
+ansible all -i myinventory47 --list-hosts (listing out whatever in that specific inventory)
+
+touch file1.txt (create text file)
+vim file1.txt (insert content)
+cat file1.txt
+cat ansible.cfg (view file)
+
+dd -for delete
+
+mkdir playbook
+cd playbook
+vi playbook/copyfileplaybook.yml
+{
+---
+- name: copying and displaying task playbook
+  hosts: all
+  tasks:
+   - name: Copying file named.txt
+     copy:
+       src: name.txt
+       dest: /tmp
+   - name: displaying content of name.txt
+     command: cat /tmp/name.txt
+}
+
+---
+- name: copying and displaying task playbook
+  hosts: all
+  tasks:
+    - name: Copying file named.txt
+      copy:
+        src: name.txt
+        dest: /tmp
+
+ 
+
+    - name: displaying content of name.txt
+      command: cat /tmp/name.txt
+      register: bestContent_Ever
+
+ 
+
+    - debug:
+        msg: "Your text is:  {{ bestContent_Ever.stdout  }} "
+
+
+
+ansible_user=administrator ansible_password=M0nkey10!
+
+ansible-playbook playbook/copyfileplaybook.yml --synatx-check
+ansible-playbook playbook/copyfileplaybook.yml
+
+vi playbook/debugplaybooktest.yml
+
+ansible-doc debug
+
+---
+- name: this is playbook is to practice debug module
+  hosts: all
+  tasks: 
+    - name: print message
+      debug: 
+        
+
+
+
+
